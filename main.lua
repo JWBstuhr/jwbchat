@@ -6,11 +6,18 @@ else
 end
 
 local w,h = term.getSize()
+
+local nOption = 1
  
 function printCentered(y,s)
  local x = math.floor((w - string.len(s)) /2)
  term.setCursorPos(x,y)
  term.clearLine()
+ if nOption + 8 == y or y == 7 then
+  term.setTextColor( colors.lightBlue )
+ else
+  term.setTextColor( colors.white )
+ end
  term.write(s)
 end
 
@@ -24,6 +31,22 @@ function tload(name)
  local data = file.readAll()
  file.close()
  return textutils.unserialize(data)
+end
+
+local d2clist = {
+    c1 = colors.white,
+    c2 = colors.gray,
+    c3 = colors.red,
+    c4 = colors.orange,
+    c5 = colors.yellow,
+    c6 = colors.green,
+    c7 = colors.blue,
+    c8 = colors.purple
+}
+function d2c(digit)
+ local tocolorc = "c" .. digit
+ local tocolor = d2clist[tocolorc]
+ return tocolor
 end
 
 local function jconfiginit()
@@ -63,8 +86,8 @@ local function jname()
  print("Set your username. Keep it to simple alphanumerics, and no spaces.")
  input = read()
  jconfig.name = input
- inputr = 8
- while inputr > 6 or inputr < 1 do
+ inputr = 9
+ while inputr > 8 or inputr < 1 do
   term.clear()
   term.setCursorPos(1,1)
   print("Set your username color.")
@@ -73,16 +96,20 @@ local function jname()
   print("2 - Gray")
   term.setTextColor( colors.red )
   print("3 - Red")
+  term.setTextColor( colors.orange )
+  print("4 - Orange")
   term.setTextColor( colors.yellow )
-  print("4 - Yellow")
-  term.setTextColor( colors.blue )
-  print("5 - Blue")
+  print("5 - Yellow")
   term.setTextColor( colors.green )
   print("6 - Green")
+  term.setTextColor( colors.blue )
+  print("7 - Blue")
+  term.setTextColor( colors.purple )
+  print("8 - Purple")
   term.setTextColor( colors.white )
   input = read()
   inputr = tonumber(input)
-  if inputr < 7 and inputr > 0 then
+  if inputr < 9 and inputr > 0 then
    jconfig.namc = input
    tsave(jconfig,"/jc/jconfig")
   else
@@ -115,6 +142,7 @@ else
 end
 -- Import Skynet functions
 skynet = dofile("/jc/skynet.lua")
+skynet.open(1503)
 
  -- Copied from program chat.lua
  local parentTerm = term.current()
@@ -133,10 +161,15 @@ local highlightColor = colors.lightBlue
  -- Copied from program chat.lua, edited variables
  local function drawTitle()
     local w = titleWindow.getSize()
-    local sTitle = jconfig.name .. " on " .. jconfig.chan
+    local sTname = jconfig.name
+    local sTitle = " on " .. jconfig.chan
+    local sFull = sTname .. sTitle
     titleWindow.setTextColor(highlightColor)
-    titleWindow.setCursorPos(math.floor(w / 2 - #sTitle / 2), 1)
+    titleWindow.setCursorPos(math.floor(w / 2 - #sFull / 2), 1)
     titleWindow.clearLine()
+    titleWindow.setTextColor(d2c(tonumber(jconfig.namc)))
+    titleWindow.write(sTname)
+    titleWindow.setTextColor(highlightColor)
     titleWindow.write(sTitle)
     promptWindow.restoreCursor()
  end
@@ -194,11 +227,11 @@ term.setCursorPos(1,1)
 
 end
  
-local nOption = 1
 jconfiginit()
 local function drawMenu()
  term.clear()
  term.setCursorPos(1,1)
+ term.setTextColor( colors.lightBlue )
  term.write("JWBChat")
  term.setCursorPos(w-11,1)
  if nOption == 1 then
@@ -216,7 +249,9 @@ end
 term.clear()
 local function drawFrontend()
  printCentered(math.floor(h/2) - 3, "")
- printCentered(math.floor(h/2) - 2, "Main Menu")
+ term.setTextColor( colors.lightBlue )
+ printCentered(math.floor(h/2) - 2, "JWBchat: Your place to talk.")
+ term.setTextColor( colors.white )
  printCentered(math.floor(h/2) - 1, "")
  printCentered(math.floor(h/2) + 0, ((nOption == 1) and "[ Join            ]") or "Join           ")
  printCentered(math.floor(h/2) + 1, ((nOption == 2) and "[ Change Channel  ]") or "Change Channel ")

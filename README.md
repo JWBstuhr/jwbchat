@@ -11,4 +11,8 @@ Install with:
 
 `wget https://github.com/JWBstuhr/jwbchat/raw/main/jwbchat.lua`
 
+with Sound if you have a speaker:
+
+`wget https://github.com/JWBstuhr/jwbchat/raw/main/jwbchat-sound.lua jwbchat`
+
 Useful with [CraftOS-PC](https://www.craftos-pc.cc/).

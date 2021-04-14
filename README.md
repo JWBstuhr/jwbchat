@@ -13,6 +13,6 @@ Install with:
 
 with Sound if you have a speaker:
 
-`wget https://github.com/JWBstuhr/jwbchat/raw/main/jwbchat-sound.lua jwbchat`
+`wget https://github.com/JWBstuhr/jwbchat/raw/main/jwbchat-sound.lua jwbchat.lua`
 
 Useful with [CraftOS-PC](https://www.craftos-pc.cc/).

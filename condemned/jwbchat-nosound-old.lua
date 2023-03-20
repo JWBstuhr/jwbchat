@@ -1,3 +1,4 @@
+-- /!\ CONDEMNED
 os.pullEvent = os.pullEventRaw
 
 if term.isColor() then

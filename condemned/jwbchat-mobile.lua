@@ -1,3 +1,4 @@
+-- /!\ CONDEMNED
 os.pullEvent = os.pullEventRaw -- Stop people from quiting, I don't want you messing up Skynet stuff
 -- Is this a color terminal? If not, fuck off.
 if term.isColor() then

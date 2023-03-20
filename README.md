@@ -12,3 +12,6 @@ Install with:
 
 
 Useful with [CraftOS-PC](https://www.craftos-pc.cc/).
+
+### Condemned files
+Condemned files are no longer updated and are kept for archival purposes. Use at your own risk.

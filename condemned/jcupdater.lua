@@ -1,3 +1,4 @@
+-- /!\ CONDEMNED
 print("You'll have to set your Username, Channel, and Audio again!")
 sleep(2)
 shell.run("rm " .. shell.getRunningProgram())

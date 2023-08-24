@@ -1,4 +1,5 @@
-os.pullEvent = os.pullEventRaw -- Stop people from quiting, I don't want you messing up Skynet stuff
+-- os.pullEvent = os.pullEventRaw -- Stop people from quiting, I don't want you messing up Skynet stuff
+-- ^ bitch. no
 -- Is this a color terminal? If not, fuck off.
 if term.isColor() then
 else
